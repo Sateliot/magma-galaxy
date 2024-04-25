@@ -1,10 +1,17 @@
 # Deploy Magma Orchestrator
 
+## Sateliot fork
+Forked from https://github.com/ShubhamTatvamasi/magma-galaxy on 2024-04-25.
+
+We usually invoke this code from https://github.com/Sateliot/ansible/blob/main/roles/orc8r/tasks/main.yml
+
+## Usage
+
 Create an Ubuntu VM, take reference from [multipass](docs/multipass.md) docs.
 
 Quick Install:
 ```bash
-sudo bash -c "$(curl -sL https://github.com/ShubhamTatvamasi/magma-galaxy/raw/master/deploy-orc8r.sh)"
+sudo bash -c "$(curl -sL https://github.com/Sateliot/magma-galaxy/raw/master/deploy-orc8r.sh)"
 ```
 
 Switch to `magma` user after deployment has finsished:
