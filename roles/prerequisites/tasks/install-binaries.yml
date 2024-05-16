@@ -26,3 +26,24 @@
     dest: /usr/local/bin/helm
     mode: '0755'
     remote_src: yes
+
+- name: Download the kustomize binary from S3
+  amazon.aws.s3_object:
+    bucket: "{{ kustomize_bucket }}"
+    object: "{{ kustomize_package }}"
+    dest: /tmp/{{ kustomize_package }}
+    mode: get
+
+- name: Extract the kustomize binary
+  ansible.builtin.unarchive:
+    src: /tmp/{{ kustomize_package }}
+    dest: /usr/local/bin
+    remote_src: yes
+    creates: /usr/local/bin/kustomize
+    mode: '0755'
+
+- name: Create the kust.sh wrapper script
+  copy:
+    dest: /usr/local/bin/kust.sh
+    src: kust.sh
+    mode: '0755'
