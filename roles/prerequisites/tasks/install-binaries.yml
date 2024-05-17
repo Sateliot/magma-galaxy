@@ -31,12 +31,12 @@
   amazon.aws.s3_object:
     bucket: "{{ kustomize_bucket }}"
     object: "{{ kustomize_package }}"
-    dest: /tmp/{{ kustomize_package }}
+    dest: /tmp/kustomize.tgz
     mode: get
 
 - name: Extract the kustomize binary
   ansible.builtin.unarchive:
-    src: /tmp/{{ kustomize_package }}
+    src: /tmp/kustomize.tgz
     dest: /usr/local/bin
     remote_src: yes
     creates: /usr/local/bin/kustomize
