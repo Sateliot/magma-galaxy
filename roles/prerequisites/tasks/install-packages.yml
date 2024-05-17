@@ -21,13 +21,3 @@
 - name: Install Helm Diff Plugin
   kubernetes.core.helm_plugin:
     plugin_path: https://github.com/databus23/helm-diff
-
-- name: Ensure ansible-galaxy is installed
-  ansible.builtin.pip:
-    name: ansible-galaxy
-    state: present
-
-- name: Install amazon.aws collection
-  ansible.builtin.command:
-    cmd: ansible-galaxy collection install amazon.aws
-    creates: /usr/share/ansible/collections/ansible_collections/amazon/aws
