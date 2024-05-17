@@ -37,13 +37,13 @@
 - name: Extract the kustomize binary
   ansible.builtin.unarchive:
     src: /tmp/kustomize.tgz
-    dest: /usr/local/bin
+    dest: /home/magma/.local/bin
     remote_src: yes
-    creates: /usr/local/bin/kustomize
+    creates: /home/magma/.local/bin/kustomize
     mode: '0755'
 
 - name: Create the kust.sh wrapper script
   copy:
-    dest: /usr/local/bin/kust.sh
+    dest: /home/magma/.local/bin/kust.sh
     src: kust.sh
     mode: '0755'
