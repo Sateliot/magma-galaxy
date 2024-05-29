@@ -39,11 +39,29 @@
     src: /tmp/kustomize.tgz
     dest: /home/magma/.local/bin
     remote_src: yes
-    creates: /home/magma/.local/bin/kustomize
+    creates: "{{ kustomize_install_path }}"
     mode: '0755'
 
 - name: Create the kust.sh wrapper script
-  copy:
-    dest: /home/magma/.local/bin/kust.sh
-    src: kust.sh
+  ansible.builtin.template:
+    src: kust.sh.j2
+    dest: "{{ kustomize_install_path }}/kust.sh"
+    owner: magma
+    group: magma
     mode: '0755'
+
+- name: Create kustomize directory
+  ansible.builtin.file:
+    path: "{{ kustomize_directory }}"
+    state: directory
+    owner: magma
+    group: magma
+    mode: '0755'
+
+- name: Create main kustomize configuration file
+  ansible.builtin.copy:
+    src: kustomization.yaml
+    dest: "{{ kustomize_directory }}/kustomization.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'

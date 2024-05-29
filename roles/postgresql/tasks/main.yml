@@ -1,4 +1,12 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.template:
+    src: patch.yaml.j2
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install PostgreSQL
   kubernetes.core.helm:
     name: postgresql
@@ -6,7 +14,10 @@
     release_namespace: "{{ magma_namespace }}"
     chart_version: "{{ postgresql_chart_version }}"
     create_namespace: true
+    post_renderer: /home/magma/.local/bin/kust.sh
     values:
-      auth:
-        postgresPassword: "{{ postgresql_password }}"
-        database: "{{ postgresql_database }}"
+      global:
+        postgresql:
+          auth:
+            postgresPassword: "{{ postgresql_password }}"
+            database: "{{ postgresql_database }}"

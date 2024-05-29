@@ -1,0 +1,6 @@
+resources:
+- all.yaml
+
+patches:
+- path: patch.yaml
+

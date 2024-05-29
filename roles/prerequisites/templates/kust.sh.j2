@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Apply kustomize to the rendered helm chart received from stdin. This shold be invoker from the directory containing the kustomization.yaml file.
+
+cat <&0 > {{ kustomize_directory }}/all.yaml
+{{ kustomize_install_path }}/kustomize build {{ kustomize_directory }}/. && rm {{ kustomize_directory}}/all.yaml
+
+exit 0
