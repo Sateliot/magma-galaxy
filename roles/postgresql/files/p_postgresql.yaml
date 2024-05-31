@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgresql
+  namespace: orc8r
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/bitnami/postgresql:15.2.0-debian-11-r16
+        name: postgresql

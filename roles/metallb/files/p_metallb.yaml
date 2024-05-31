@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: metallb-speaker
+  namespace: metallb-system
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/metallb/speaker:v0.14.4
+        name: speaker
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metallb-controller
+  namespace: metallb-system
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/metallb/controller:v0.14.4
+        name: controller

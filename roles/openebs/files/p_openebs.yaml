@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: openebs-ndm
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/openebs/node-disk-manager:2.1.0
+        name: openebs-ndm
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openebs-localpv-provisioner
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/openebs/provisioner-localpv:3.5.0
+        name: openebs-localpv-provisioner
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openebs-ndm-operator
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/openebs/node-disk-operator:2.1.0
+        name: openebs-ndm-operator

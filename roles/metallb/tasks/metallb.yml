@@ -1,4 +1,12 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.copy:
+    src: p_metallb.yaml
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install MetallLB
   kubernetes.core.helm:
     name: metallb
@@ -6,3 +14,4 @@
     release_namespace: metallb-system
     chart_version: "{{ metallb_chart_version }}"
     create_namespace: true
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"

@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluentd
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/google-containers/fluentd-elasticsearch:v2.4.0
+        name: fluentd

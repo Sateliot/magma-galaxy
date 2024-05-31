@@ -1,7 +1,7 @@
 ---
 - name: Create kustomize patch
-  ansible.builtin.template:
-    src: patch.yaml.j2
+  ansible.builtin.copy:
+    src: p_postgresql.yaml
     dest: "{{ kustomize_directory }}/patch.yaml"
     owner: magma
     group: magma
@@ -14,7 +14,7 @@
     release_namespace: "{{ magma_namespace }}"
     chart_version: "{{ postgresql_chart_version }}"
     create_namespace: true
-    post_renderer: /home/magma/.local/bin/kust.sh
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       global:
         postgresql:

@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-ha
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: ha
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-lte
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: lte
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-nprobe
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: nprobe
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-policydb
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: policydb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-smsd
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: smsd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-subscriberdb
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: subscriberdb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-subscriberdb-cache
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: subscriberdb-cache

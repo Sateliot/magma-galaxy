@@ -1,10 +1,19 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.template:
+    src: patch.yaml.j2
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install Fbinternal Orc8r
   kubernetes.core.helm:
     name: fbinternal-orc8r
     chart_ref: orc8r/fbinternal-orc8r
     release_namespace: "{{ magma_namespace }}"
     create_namespace: true
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       controller:
         image:

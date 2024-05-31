@@ -1,0 +1,299 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-alertmanager-configurer
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/facebookincubator/alertmanager-configurer:1.0.4
+        name: alertmanager-configurer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-alertmanager
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/prom/alertmanager:v0.18.0
+        name: alertmanager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-prometheus-cache
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/facebookincubator/prometheus-edge-hub:1.1.0
+        name: prometheus-cache
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-prometheus-configurer
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/facebookincubator/prometheus-configurer:1.0.4
+        name: prometheus-configurer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-user-grafana
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/grafana/grafana:6.7.6
+        name: user-grafana
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nms-magmalte
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/magmalte:1.8.0
+        name: nms-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-accessd
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: accessd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-analytics
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: analytics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-bootstrapper
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: bootstrapper
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-certifier
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: certifier
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-configurator
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: configurator
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-ctraced
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: ctraced
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-device
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: device
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-directoryd
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: directoryd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-dispatcher
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: dispatcher
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-eventd
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: eventd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-metricsd
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: metricsd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-nginx
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/nginx:1.8.0
+        name: orc8r-nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-obsidian
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: obsidian
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-orc8r-worker
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: orc8r-worker
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-orchestrator
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: orchestrator
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-service-registry
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: service-registry
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-state
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: state
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-streamer
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: streamer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-tenants
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: tenants

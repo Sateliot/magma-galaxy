@@ -1,4 +1,12 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.copy:
+    src: p_openebs.yaml
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install OpenEBS
   kubernetes.core.helm:
     name: openebs
@@ -6,6 +14,7 @@
     release_namespace: openebs
     chart_version: "{{ openebs_chart_version }}"
     create_namespace: true
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       localprovisioner:
         hostpathClass:

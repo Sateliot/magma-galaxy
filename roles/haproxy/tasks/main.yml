@@ -1,4 +1,12 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.copy:
+    src: p_haproxy.yaml
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install HAProxy
   kubernetes.core.helm:
     name: haproxy
@@ -6,6 +14,7 @@
     release_namespace: "{{ magma_namespace }}"
     chart_version: "{{ haproxy_chart_version }}"
     create_namespace: true
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       service:
         type: LoadBalancer

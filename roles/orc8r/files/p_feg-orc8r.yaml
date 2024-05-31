@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-base-acct
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: base-acct
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-feg
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: feg
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-feg-relay
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: feg-relay
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orc8r-health
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: 301987362515.dkr.ecr.eu-central-1.amazonaws.com/external/magmacore/controller:1.8.0
+        name: health

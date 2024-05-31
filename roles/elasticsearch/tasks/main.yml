@@ -1,4 +1,12 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.copy:
+    src: p_elasticsearch.yaml
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install Elasticsearch
   kubernetes.core.helm:
     name: elasticsearch
@@ -6,6 +14,7 @@
     release_namespace: "{{ magma_namespace }}"
     chart_version: "{{ elasticsearch_chart_version }}"
     create_namespace: true
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       replicas: 1
       extraEnvs:

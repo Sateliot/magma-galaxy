@@ -1,10 +1,19 @@
 ---
+- name: Create kustomize patch
+  ansible.builtin.copy:
+    src: p_cwf-orc8r.yaml
+    dest: "{{ kustomize_directory }}/patch.yaml"
+    owner: magma
+    group: magma
+    mode: '0644'
+
 - name: Install CWF Orc8r
   kubernetes.core.helm:
     name: cwf-orc8r
     chart_ref: orc8r/cwf-orc8r
     release_namespace: "{{ magma_namespace }}"
     create_namespace: true
+    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       controller:
         image:
