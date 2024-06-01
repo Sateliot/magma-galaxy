@@ -47,7 +47,7 @@
     src: /tmp/kustomize.tgz
     dest: /home/magma/.local/bin
     remote_src: yes
-    creates: "{{ kustomize_install_path }}"
+    creates: "{{ kustomize_install_path }}/kustomize"
     mode: '0755'
 
 - name: Create the kust.sh wrapper script
