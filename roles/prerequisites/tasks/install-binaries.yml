@@ -27,6 +27,14 @@
     mode: '0755'
     remote_src: yes
 
+- name: Create the kustomize install directory
+  ansible.builtin.file:
+    path: "{{ kustomize_install_path }}"
+    state: directory
+    owner: magma
+    group: magma
+    mode: '0755'
+
 - name: Download the kustomize binary from S3
   amazon.aws.s3_object:
     bucket: "{{ kustomize_bucket }}"
