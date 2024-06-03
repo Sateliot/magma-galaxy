@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  nginx_proxy_ssl.conf: |
+    server {
+      listen 443 ssl;
+      #ssl on;
+      ssl_certificate /etc/nginx/conf.d/nms_nginx.pem;
+      ssl_certificate_key /etc/nginx/conf.d/nms_nginx.key.pem;
+      location / {
+         proxy_pass http://magmalte:8081;
+         proxy_set_header Host $http_host;
+         proxy_set_header X-Forwarded-Proto $scheme;
+      }
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: orc8r
+    meta.helm.sh/release-namespace: orc8r
+  labels:
+    app.kubernetes.io/component: nginx
+    app.kubernetes.io/instance: orc8r
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nms
+    app.kubernetes.io/part-of: magma
+    release_group: orc8r
+  name: nginx-proxy-etc
+  namespace: orc8r
+

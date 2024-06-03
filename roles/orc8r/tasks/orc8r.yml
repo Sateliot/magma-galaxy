@@ -119,3 +119,8 @@
                 {{ nms_nginx_key_pem['content'] | b64decode }}
               nms_nginx.pem: |
                 {{ nms_nginx_pem['content'] | b64decode }}
+
+- name: Create configmap for nginx-proxy-etc
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'configmap_nginx-proxy-etc.yaml') | from_yaml }}"
