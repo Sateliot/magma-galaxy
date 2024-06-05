@@ -15,3 +15,10 @@
     chart_version: "{{ metallb_chart_version }}"
     create_namespace: true
     post_renderer: "{{ kustomize_install_path }}/kust.sh"
+    values:
+      configInline:
+        address-pools:
+          - name: default
+            protocol: layer2
+            addresses:
+              - "{{ metallb_ip }}/32"
