@@ -14,7 +14,7 @@
     release_namespace: metallb-system
     chart_version: "{{ metallb_chart_version }}"
     create_namespace: true
-    post_renderer: "{{ kustomize_install_path }}/kust.sh"
+    #    post_renderer: "{{ kustomize_install_path }}/kust.sh"
     values:
       configInline:
         address-pools:
